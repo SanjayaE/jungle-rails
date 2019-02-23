@@ -30,6 +30,18 @@ class ApplicationController < ActionController::Base
   helper_method :cart_subtotal_cents
 
 
+  def order_list
+    puts "this is it #{@cart.inspect}"
+    @order_list ||= Product.where(id: @order.id).map {|product| { product:product, quantity: cart[product.id.to_s] } }
+  end
+  helper_method :order_list
+
+  def order_subtotal_cents
+    order_list.map {|entry| entry[:product].price_cents * entry[:quantity]}.sum
+  end
+  helper_method :order_subtotal_cents
+
+
   def update_cart(new_cart)
     cookies[:cart] = {
       value: JSON.generate(new_cart),
