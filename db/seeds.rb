@@ -148,9 +148,9 @@ puts "Finding or Creating Reviews"
 
 Review.destroy_all
 
-5.times do 
+20.times do 
 Review.create! ({
-  product_id:Faker::Number.between(1, 5),
+  product_id:Faker::Number.between(1, 12),
   user_id:Faker::Number.between(1, 5),
   description:Faker::Hipster.sentence ,
   rating:Faker::Number.between(1, 5)

@@ -22,6 +22,12 @@
           <dd><%= @product.quantity %></dd>
           <dt>Price</dt>
           <dd><%= @product.price %></dd>
+          <dt>Rating</dt>
+          <dd><%= @product.reviews.average('rating').round(2) %></dd>
+          <dt>Reviews</dt>
+          <% @product.reviews.each do |review| %>
+            <dd><%= review.description %></dd>
+          <% end %>
         </dl>
       </div>
     </div>
