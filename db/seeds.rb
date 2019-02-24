@@ -132,5 +132,32 @@ cat3.products.create!({
   price: 2_483.75
 })
 
+puts "Finding or Creating Users"
+
+User.destroy_all
+
+10.times do 
+User.create! ({
+  name: Faker::Name.name,
+  email: Faker::Internet.email,
+  password_digest:Faker::Internet.password(8)
+})
+end  
+
+puts "Finding or Creating Reviews"
+
+Review.destroy_all
+
+5.times do 
+Review.create! ({
+  product_id:Faker::Number.between(1, 5),
+  user_id:Faker::Number.between(1, 5),
+  description:Faker::Hipster.sentence ,
+  rating:Faker::Number.between(1, 5)
+})
+end  
+
+
+
 
 puts "DONE!"
