@@ -1,6 +1,25 @@
 class ReviewsController < ApplicationController
 
   def create
-    raise "Yay, I'm here!"
+    @product_id = params.require(:product_id)
+    @review = Review.new(reviewInfo)
+    @review.product_id = @product_id
+    @review.user_id = current_user.id
+    if (@review.user = current_user)
+    @review.save
+    redirect_to '/products/'+@product_id
+    else
+     redirect_to '/products/'+@product_id
+    end
   end
 end
+
+
+ private
+  def reviewInfo
+    params.require(:review).permit(:rating, :description)
+  end
+
+
+
+

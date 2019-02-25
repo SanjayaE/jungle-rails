@@ -1,4 +1,6 @@
 class Admin::CategoriesController < ApplicationController
+
+  before_filter :authenticate
   def index
   end
 
@@ -8,7 +10,6 @@ class Admin::CategoriesController < ApplicationController
   def new
   end
 
- before_filter :authenticate
  protected
 
   def authenticate

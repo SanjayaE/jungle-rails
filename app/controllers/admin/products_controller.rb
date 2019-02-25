@@ -1,5 +1,5 @@
 class Admin::ProductsController < ApplicationController
-
+before_filter :authenticate
   def index
     @products = Product.order(id: :desc).all
   end
@@ -38,7 +38,6 @@ class Admin::ProductsController < ApplicationController
   end
 
 
-   before_filter :authenticate
  protected
 
   def authenticate

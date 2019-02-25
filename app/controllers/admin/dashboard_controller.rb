@@ -1,10 +1,11 @@
 class Admin::DashboardController < ApplicationController
+
+  before_filter :authenticate
   def show
   end
 
 
 
-   before_filter :authenticate
  protected
 
   def authenticate
