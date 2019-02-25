@@ -28,6 +28,7 @@
           <% else %>
           <dd><%= @product.reviews.average('rating').round(2) %></dd>
           <% end %>
+          <% if @review.user = current_user %>
           <dt>Post new Rating</dt>
          <div class="form-group"> 
           <dd><%= form_for [@product, @review] do |f| %>
@@ -38,11 +39,8 @@
           </dd>
           <dd><%= f.submit "submit", class: "btn btn-primary" %></dd>
           <% end %>
+          <% end %>
       </div>  
-
-
-
-
           <dt>Reviews</dt>
           <% @product.reviews.each do |review| %>
             <dd><%= review.description %></dd>
