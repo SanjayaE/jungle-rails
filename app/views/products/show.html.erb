@@ -24,9 +24,25 @@
           <dd><%= @product.price %></dd>
           <dt>Rating</dt>
           <% if @product.reviews.average('rating').blank? %>
+          <dd>Not rated yet</dd>
           <% else %>
           <dd><%= @product.reviews.average('rating').round(2) %></dd>
           <% end %>
+          <dt>Post new Rating</dt>
+         <div class="form-group"> 
+          <dd><%= form_for [@product, @review] do |f| %>
+          <%= f.select :rating, options_for_select([["Bad- 1","1"],["Poor -2","2"],["Average -3","3"],["Good -4","4"],["Excellent -5","5"]]) %> 
+          <div>
+          <%= f.text_area :description %>
+          </div>
+          </dd>
+          <dd><%= f.submit "submit", class: "btn btn-primary" %></dd>
+          <% end %>
+      </div>  
+
+
+
+
           <dt>Reviews</dt>
           <% @product.reviews.each do |review| %>
             <dd><%= review.description %></dd>
