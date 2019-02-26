@@ -44,6 +44,10 @@
           <dt>Reviews</dt>
           <% @product.reviews.each do |review| %>
             <dd><%= review.description %></dd>
+            <% if review.user == current_user %>
+             <dd><%= link_to fa_icon('trash'), product_review_path(@product.id, review.id), class: 'btn btn-sm btn-danger', method: :delete %> </dd>
+           
+            <% end %>
           <% end %>
         </dl>
       </div>
